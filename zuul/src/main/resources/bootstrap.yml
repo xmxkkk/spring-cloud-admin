@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: zuul
+server:
+  port: 8000
+zuul:
+  routes:
+    user: /user/**
+    shop: /shop/**

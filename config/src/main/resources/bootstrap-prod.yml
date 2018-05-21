@@ -1,0 +1,16 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: root
+    password: 999ccc
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xmxkkk/spring-cloud-repo
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123abc@127.0.0.1:10000/eureka/,http://root:123abc@127.0.0.1:10001/eureka/

@@ -1,0 +1,59 @@
+version: '2'
+services:
+  peer1:
+    image: fuhaidev/eureka:1.0-SNAPSHOT
+    ports:
+      - 10000:10000
+    environment:
+      - spring.profiles.active=prod,peer1
+    hostname: peer1
+  peer2:
+    image: fuhaidev/eureka:1.0-SNAPSHOT
+    ports:
+      - 10001:10001
+    environment:
+      - spring.profiles.active=prod,peer2
+    hostname: peer2
+  config:
+    image: fuhaidev/config:1.0-SNAPSHOT
+    ports:
+      - "9000:9000"
+    environment:
+      - spring.profiles.active=prod
+    hostname: config
+    links:
+      - peer1
+      - peer2
+  user:
+    image: fuhaidev/user:1.0-SNAPSHOT
+    ports:
+      - "10100:10100"
+    environment:
+      - spring.profiles.active=prod
+    hostname: user
+    links:
+      - peer1
+      - peer2
+      - config
+  shop:
+    image: fuhaidev/shop:1.0-SNAPSHOT
+    ports:
+      - "10200:10200"
+    environment:
+      - spring.profiles.active=prod
+    hostname: shop
+    links:
+      - peer1
+      - peer2
+      - config
+  zuul:
+    image: fuhaidev/zuul:1.0-SNAPSHOT
+    ports:
+      - "8000:8000"
+    environment:
+      - spring.profiles.active=prod
+    hostname: zuul
+    links:
+      - peer1
+      - peer2
+      - config

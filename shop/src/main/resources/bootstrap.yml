@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: shop
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config
+
+server:
+  port: 10200
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+appKeys:
+  user: 11111111111111111111111111111111
+  shop: 22222222222222222222222222222222
+
+logging:
+  config: classpath:log4j.xml

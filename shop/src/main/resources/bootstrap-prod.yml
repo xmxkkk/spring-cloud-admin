@@ -1,0 +1,22 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123abc@peer2:10000/eureka/,http://root:123abc@peer1:10001/eureka/
+spring:
+  cloud:
+    config:
+      profile: dev
+      label: master
+      username: root
+      password: 999ccc
+  datasource:
+    druid:
+      one:
+        url: jdbc:mysql://127.0.0.1:3306/test1
+        username: root
+        password:
+      two:
+        url: jdbc:mysql://127.0.0.1:3306/test2
+        username: root
+        password:
+
